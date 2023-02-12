@@ -77,7 +77,7 @@ body{
 .task-collection{
     /* margin: 0px 20px; */
     width: 500px;
-    /* height: 35px; This was making it show behind, you were setting the height of the task list */
+    /* comment: height: 35px; This was making it show behind, you were setting the height of the task list */
     border-radius: 30px;
     list-style: none;
     /* padding-left: 20px; */
@@ -95,7 +95,7 @@ body{
     font-weight: 700;
 }
 
-/*This isn't needed*/
+/* comment This isn't needed*/
 /* .todo-container{
     display: flex;
     justify-content: center;
