@@ -77,13 +77,17 @@ body{
 .task-collection{
     /* margin: 0px 20px; */
     width: 500px;
+<<<<<<< HEAD
     /* comment: height: 35px; This was making it show behind, you were setting the height of the task list */
+=======
+    /* height: 35px; This was making it show behind, you were setting the height of the task list */
+>>>>>>> 6bcf2bf (Update style.css)
     border-radius: 30px;
     list-style: none;
     /* padding-left: 20px; */
 }
 
-#clear-tasks {
+.clear-tasks {
     margin-top: 20px;
     background-color: #ff6a6a;
     width: 500px;
