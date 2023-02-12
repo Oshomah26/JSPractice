@@ -104,7 +104,7 @@ addTask.value = '';
 
 
 function deleteItem(e){
-    if(e.target.parentElement.classList.contains('to-do-task')){
+    if(e.target.parentElement.classList.contains('delete-btn')){
         e.target.parentElement.parentElement.remove();
     }
     console.log(e.target);
