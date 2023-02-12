@@ -3,7 +3,7 @@
 const addTask = document.querySelector('#task');
 const submitTask = document.querySelector('#submit-task');
 const filterTasks = document.querySelector('#filter-tasks');
-const clearTasks = document.querySelector('#clear-tasks'); 
+const clearTasks = document.querySelector('.clear-tasks'); 
 const taskList = document.querySelector('.task-collection')
 
 
@@ -12,6 +12,8 @@ loadEvenListeners()
 function loadEvenListeners(){
     submitTask.addEventListener('click', submitThisTask);
     taskList.addEventListener('click', deleteItem);
+    filterTasks.addEventListener('keyup', filterTodo);
+    clearTasks.addEventListener('click', clearAllTasks);
 }; 
 
 function submitThisTask(e){
@@ -108,6 +110,27 @@ function deleteItem(e){
         e.target.parentElement.parentElement.remove();
     }
     console.log(e.target);
-}
+};
 
+function filterTodo(e){
+
+    const text = e.target.value.toLowerCase();
+
+    document.querySelectorAll('.task-collection').forEach(function(task){
+        const item = task.firstChild.textContent;
+        if(item.toLowerCase().indexOf(text) != -1){
+            task.style.display = 'block';
+        } else {
+            task.style.display = 'none';
+        }
+    })
+    console.log(text);
+};
+
+function clearAllTasks(e){
+    if(e.target.classList.contains('clear-tasks')){
+        taskList.innerHTML = ''
+    }
+    e.preventDefault();
+}
 
