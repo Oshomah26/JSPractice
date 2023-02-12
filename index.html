@@ -1,49 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Super to-do list </title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
-<body>
-    
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Super to-do list</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
     <div class="container">
-        <header id="main-header">Things to do</header>
-        <div id="top-card">
+      <header id="main-header">Things to do</header>
+      <div id="top-card">
         <form id="task-form">
-            <div>
-                <input type="text" id="task" name="task" placeholder="New task">
-                <!-- <label for="">New Task</label> -->
-            </div>
-            <input type="submit" class="btn" id="submit-task" value="Add Task">
+          <div>
+            <input type="text" id="task" name="task" placeholder="New task" />
+            <!-- <label for="">New Task</label> -->
+          </div>
+          <input type="submit" class="btn" id="submit-task" value="Add Task" />
         </form>
+      </div>
+      <div id="task-section">
+        <h3 id="task-title">Tasks</h3>
+        <div id="filter-form">
+          <div id="filter">
+            <input type="text" id="filter-tasks" placeholder="Filter tasks" />
+          </div>
         </div>
-        <div id="task-section">
-            <h3 id="task-title">Tasks</h3>
-            <div id="filter-form">
-                <div id="filter">
-                    <input type="text" id="filter-tasks" placeholder="Filter tasks">
-                </div>
-            </div>
-            <div class="todo-container">
-                <ul class="task-collection">
-                    <!-- <div class="to-do-task">
+        <div>
+          <ul class="todo-container">
+            <!-- <div class="to-do-task">
                     <button> checked</button>
                     <li></li>
                     <button>delete</button>
                     </div> -->
-                </ul></div>
-            <div>
-            <button type="button" id="clear-tasks">Clear tasks</button>
-            </div>
 
+            <li class="task-collection"></li>
+          </ul>
         </div>
-
+        <div>
+          <button type="button" id="clear-tasks">Clear tasks</button>
+        </div>
+      </div>
     </div>
-   
-<script src="app.js"></script>
-</body>
+
+    <script src="app.js"></script>
+  </body>
 </html>
