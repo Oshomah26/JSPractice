@@ -4,14 +4,15 @@ const addTask = document.querySelector('#task');
 const submitTask = document.querySelector('#submit-task');
 const filterTasks = document.querySelector('#filter-tasks');
 const clearTasks = document.querySelector('.clear-tasks'); 
-const taskList = document.querySelector('.task-collection')
+// const taskList = document.querySelector('.task-collection')
+const taskContainer = document.querySelector('.todo-container');
 
 
 loadEvenListeners()
 
 function loadEvenListeners(){
     submitTask.addEventListener('click', submitThisTask);
-    taskList.addEventListener('click', deleteItem);
+    // taskList.addEventListener('click', deleteItem);
     filterTasks.addEventListener('keyup', filterTodo);
     clearTasks.addEventListener('click', clearAllTasks);
 }; 
@@ -25,13 +26,13 @@ function submitThisTask(e){
        
 
         // Create to-do-task div
-        const todoDiv = document.createElement('div');
+        // const todoDiv = document.createElement('div');
         // Add classList to div
-        todoDiv.classList.add('todo');
+        // todoDiv.classList.add('todo');
 
         // create li element
         const li = document.createElement('li');
-        li.classList.add('to-do-task');
+        li.classList.add('task-collection');
 
          // CHECKMARK button
          const completedButton = document.createElement('button');
@@ -63,7 +64,7 @@ function submitThisTask(e){
         
 
         // Append li to todoDiv
-        todoDiv.appendChild(li);
+        // todoDiv.appendChild(li);
 
 // --------------------------------------
 
@@ -93,7 +94,7 @@ function submitThisTask(e){
 // -------------------------
 
 
-        taskList.appendChild(todoDiv);
+        taskContainer.appendChild(li);
 
         addTask.value = '';
         
@@ -115,16 +116,16 @@ function deleteItem(e){
 function filterTodo(e){
 
     const text = e.target.value.toLowerCase();
-
+    
     document.querySelectorAll('.task-collection').forEach(function(task){
-        const item = task.firstChild.textContent;
+        const item = task.textContent;
+        
         if(item.toLowerCase().indexOf(text) != -1){
             task.style.display = 'block';
         } else {
             task.style.display = 'none';
         }
     })
-    console.log(text);
 };
 
 function clearAllTasks(e){

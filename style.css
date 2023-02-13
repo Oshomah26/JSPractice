@@ -107,7 +107,7 @@ body{
     list-style: none;
 }
 
-.to-do-task {
+.task-collection {
     margin: 0.5rem;
     background: #ffffff;
     font-size: 1.25rem;
