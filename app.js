@@ -5,39 +5,49 @@ const submitTask = document.querySelector('#submit-task');
 const filterTasks = document.querySelector('#filter-tasks');
 const clearTasks = document.querySelector('.clear-tasks'); 
 const taskList = document.querySelector('.task-collection')
+const taskContainer = document.querySelector('.todo-container');
 
 
 loadEvenListeners()
 
 function loadEvenListeners(){
     submitTask.addEventListener('click', submitThisTask);
-    taskList.addEventListener('click', deleteItem);
+    // taskList.addEventListener('click', deleteItem);
+    taskContainer.addEventListener('click', deleteItem);
     filterTasks.addEventListener('keyup', filterTodo);
     clearTasks.addEventListener('click', clearAllTasks);
 }; 
 
 function submitThisTask(e){
+    const taskItself = document.querySelector('.task-collection');
 
     if(addTask.value === ''){
         alert('Please add task!')
-    } else {
+    } else if (taskList.textContent.includes(addTask.value)){
+        alert('Already added task')
+    }
+    
+    else {
 
        
 
         // Create to-do-task div
-        const todoDiv = document.createElement('div');
+        // const todoDiv = document.createElement('div');
         // Add classList to div
-        todoDiv.classList.add('todo');
+        // todoDiv.classList.add('todo');
 
         // create li element
         const li = document.createElement('li');
-        li.classList.add('to-do-task');
+        li.className = 'to-do-task';
+
+        // li.classList.add('to-do-task');
 
          // CHECKMARK button
          const completedButton = document.createElement('button');
+         completedButton.className = 'complete-btn';
          completedButton.innerHTML = '<i class="fa-solid fa-check"></i>';
 
-         completedButton.classList.add('complete-btn');
+         
 
          li.appendChild(completedButton);
 
@@ -62,8 +72,8 @@ function submitThisTask(e){
 
         
 
-        // Append li to todoDiv
-        todoDiv.appendChild(li);
+        // Append li to task ul
+        taskItself.appendChild(li);
 
 // --------------------------------------
 
@@ -93,7 +103,7 @@ function submitThisTask(e){
 // -------------------------
 
 
-        taskList.appendChild(todoDiv);
+        taskContainer.appendChild(taskItself);
 
         addTask.value = '';
         
@@ -116,8 +126,8 @@ function filterTodo(e){
 
     const text = e.target.value.toLowerCase();
 
-    document.querySelectorAll('.task-collection').forEach(function(task){
-        const item = task.firstChild.textContent;
+    document.querySelectorAll('.to-do-task').forEach(function(task){
+        const item = task.childNodes[1].textContent;
         if(item.toLowerCase().indexOf(text) != -1){
             task.style.display = 'block';
         } else {
@@ -132,5 +142,5 @@ function clearAllTasks(e){
         taskList.innerHTML = ''
     }
     e.preventDefault();
-}
+};
 
