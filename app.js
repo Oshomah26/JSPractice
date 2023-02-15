@@ -16,11 +16,16 @@ function loadEvenListeners(){
     taskContainer.addEventListener('click', deleteItem);
     filterTasks.addEventListener('keyup', filterTodo);
     clearTasks.addEventListener('click', clearAllTasks);
+    // DOM load event
+    document.addEventListener('DOMContentLoaded', getTasks);
 }; 
 
-function submitThisTask(e){
-    const taskItself = document.querySelector('.task-collection');
 
+
+
+
+function submitThisTask(e){
+    // const taskItself = document.querySelector('.task-collection');
     if(addTask.value === ''){
         alert('Please add task!')
     } else if (taskList.textContent.includes(addTask.value)){
@@ -73,7 +78,7 @@ function submitThisTask(e){
         
 
         // Append li to task ul
-        taskItself.appendChild(li);
+         taskList.appendChild(li);
 
 // --------------------------------------
 
@@ -103,16 +108,101 @@ function submitThisTask(e){
 // -------------------------
 
 
-        taskContainer.appendChild(taskItself);
+        taskContainer.appendChild(taskList);
+
+          // Add to Local storage
+    addTasksToLs(addTask.value);
 
         addTask.value = '';
         
     //create ui element
     console.log(li)}
     e.preventDefault();
+
+  
+    
 }; 
 
+// Show tasks after refresh
+
+function getTasks(){
+    let tasks;
+    if(localStorage.getItem('tasks') === null){
+        tasks = [];
+    } else {
+        tasks = JSON.parse(localStorage.getItem('tasks'));
+    }; 
+
+    // const taskItself = document.querySelector('.task-collection');
+
+
+    tasks.forEach(function(task){
+
+    // create li element
+    const li = document.createElement('li');
+    li.className = 'to-do-task';
+
+    // li.classList.add('to-do-task');
+
+     // CHECKMARK button
+     const completedButton = document.createElement('button');
+     completedButton.className = 'complete-btn';
+     completedButton.innerHTML = '<i class="fa-solid fa-check"></i>';
+
+     
+
+     li.appendChild(completedButton);
+
+    
+
+    li.appendChild(document.createTextNode(task));
+
+
+    // li.style.listStyle = 'none';
+    // li.style.backgroundColor = '#ffffff'
+    // li.style.marginTop = '10px';
+    // li.style.paddingLeft = '15px';
+    // li.style.paddingTop = '10px';
+
+     // CHECKMARK button
+     const deleteButton = document.createElement('button');
+     deleteButton.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+
+     deleteButton.classList.add('delete-btn');
+
+     li.appendChild(deleteButton);
+
+    
+
+    // Append li to task ul
+    taskList.appendChild(li);
+
+    // taskContainer.appendChild(taskList);
+    });
+
+
+}
+
+
+
 addTask.value = '';
+
+// Add tasks to LS 
+
+function addTasksToLs(task){
+    let tasks;
+    if(localStorage.getItem('tasks') === null){
+        tasks = [];
+    } else
+    {
+        tasks = JSON.parse(localStorage.getItem('tasks'));
+    }
+
+    tasks.push(task);
+
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+
+}
 
 
 function deleteItem(e){
@@ -120,6 +210,32 @@ function deleteItem(e){
         e.target.parentElement.parentElement.remove();
     }
     console.log(e.target);
+
+    // Delete from LS
+
+    removeFromLocalStorage(e.target.parentElement.parentElement);
+};
+
+// Delete from LS function 
+
+function removeFromLocalStorage(taskItem){
+    let tasks;
+    if(localStorage.getItem('tasks') === null){
+        tasks = [];
+    } else
+    {
+        tasks = JSON.parse(localStorage.getItem('tasks'));
+    };
+
+    tasks.forEach(function(task, index){
+        if (taskItem.textContent === task){
+            tasks.splice(index, 1);
+        }
+    }); 
+
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+
+
 };
 
 function filterTodo(e){
@@ -142,5 +258,11 @@ function clearAllTasks(e){
         taskList.innerHTML = ''
     }
     e.preventDefault();
+
+    clearAllTasksFromLS();
 };
+
+function clearAllTasksFromLS(){
+    localStorage.clear();
+}
 
